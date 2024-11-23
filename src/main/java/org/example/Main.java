@@ -1,39 +1,37 @@
 package org.example;
 
-import Adapter.Computer;
-import Adapter.MemoryCard;
-import Adapter.MemoryCardAdapter;
-import Adapter.Usb;
-import Factory.CoffeMashine;
-import Factory.CoffeType;
-import Factory.Facility;
-import proxy.Database;
-import proxy.DatabaseProxy;
-import singleton.TestClass;
-import singleton.Singleton;
+import com.patterns.coffee.factory.CoffeeFactory;
+import com.patterns.coffee.factory.CoffeeMachine;
+import com.patterns.coffee.factory.CoffeeService;
+import com.patterns.coffee.factory.CoffeeType;
+import com.patterns.database.proxy.Database;
+import com.patterns.database.proxy.DatabaseConnectionProxy;
+import com.patterns.adapter.*;
+import com.patterns.singleton.Singleton;
+import com.patterns.singleton.TestClass;
 
 public class Main {
     public static void main(String[] args) {
 
-//        Singleton singleton = Singleton.getInstance();
-//        singleton.classLog(new TestClass(), "someInfo");
+        Singleton singleton = Singleton.getInstance();
+        singleton.classLog(new TestClass(), "someInfo");
 
-//        CoffeMashine coffeMashine = new CoffeMashine();
-//        Facility facility = new Facility(coffeMashine);
-//
-//        facility.start(CoffeType.ESPRESSO);
-//        facility.start(CoffeType.AMERICANO);
+        CoffeeMachine coffeeMachine = new CoffeeMachine();
+        CoffeeFactory coffeeFactory = new CoffeeFactory();
+        CoffeeService service = new CoffeeService(coffeeMachine, coffeeFactory);
 
-//        Database db = new DatabaseProxy("localhost", "mydatabase", 8800);
-//        db.connect();
-//
-//        MemoryCard memoryCard = new MemoryCard();
-//        MemoryCardAdapter memoryCardAdapter = new MemoryCardAdapter(memoryCard);
-//
-//        Computer computer = new Computer();
-//        computer.connect(memoryCardAdapter);
-//
-//        Usb usb = new Usb();
-//        computer.connect(usb);
+        service.start(CoffeeType.ESPRESSO);
+        System.out.println();
+        service.start(CoffeeType.AMERICANO);
+
+        Database db = new DatabaseConnectionProxy("localhost", "mydatabase", 8800);
+        db.connect();
+
+
+        Computer computer = new Computer();
+        MemoryCardReader memoryCard = new MemoryCard();
+
+        Usb memoryCardAdapter = new MemoryCardAdapter(memoryCard);
+        computer.connectUsb(memoryCardAdapter);
     }
 }

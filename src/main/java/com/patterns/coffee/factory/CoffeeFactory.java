@@ -1,9 +1,9 @@
-package Factory;
+package com.patterns.coffee.factory;
 
-public class CoffeFactory {
+public class CoffeeFactory {
 
-    public Coffe getCoffe(CoffeType coffeType) {
-        switch (coffeType) {
+    public Coffee createCoffee(CoffeeType coffeeType) {
+        switch (coffeeType) {
             case ESPRESSO :
                 return new Espresso();
             case AMERICANO:

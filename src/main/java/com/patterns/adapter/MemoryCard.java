@@ -1,4 +1,4 @@
-package Adapter;
+package com.patterns.adapter;
 
 public class MemoryCard implements MemoryCardReader {
     @Override

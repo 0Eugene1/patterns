@@ -1,4 +1,4 @@
-package proxy;
+package com.patterns.database.proxy;
 
 public class DatabaseConnection implements Database {
     private final String connectionUrl;

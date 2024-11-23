@@ -1,4 +1,4 @@
-package singleton;
+package com.patterns.singleton;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

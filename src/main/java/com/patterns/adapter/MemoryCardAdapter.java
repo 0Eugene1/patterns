@@ -1,6 +1,6 @@
-package Adapter;
+package com.patterns.adapter;
 
-public class MemoryCardAdapter implements UsbReader {
+public class MemoryCardAdapter implements Usb {
     private final MemoryCardReader memoryCardReader;
 
     public MemoryCardAdapter(MemoryCardReader memoryCardReader){
@@ -8,7 +8,7 @@ public class MemoryCardAdapter implements UsbReader {
     }
 
     @Override
-    public void insert() {
+    public void connect() {
         memoryCardReader.insert();
     }
 }
